@@ -8,6 +8,7 @@
   --light-grey: #f6f1f1;
   --mid-grey: #e5e5e5;
   --dark-grey: #cacaca;
+  --accent-color: #1ca089;
 }
 
 body {
@@ -55,7 +56,7 @@ nav img {
 }
 
 .bi.bi-bag-fill {
-  color: #1ca089;
+  color: var(--accent-color);
 }
 footer {
   padding: 1rem 0;
@@ -65,6 +66,14 @@ footer img {
   width: 3rem;
 }
 
+footer a {
+  transform: scale(1.3);
+  color: black;
+  transition: color 0.5s;
+}
+footer a:hover {
+  color: var(--accent-color);
+}
 footer .contact {
   display: flex;
   justify-content: space-between;
@@ -90,7 +99,7 @@ footer .adress {
 
 footer .soc-med {
   margin: auto;
-  width: 10rem;
+  width: 7rem;
   display: flex;
   justify-content: space-between;
 }
