@@ -1,1 +1,2 @@
 // Hej
+console.log("hej");
