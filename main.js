@@ -1,2 +1,1 @@
-// Hej
-console.log("hej");
+const articles = JSON.parse(localStorage.bollar);

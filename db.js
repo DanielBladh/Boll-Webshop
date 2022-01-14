@@ -1,0 +1,66 @@
+const bollar = [
+  {
+    title: "basketboll",
+    category: "basket",
+    productId: 12561256,
+    extraEquipment: "luftpump",
+    material: "gummi",
+    color: "orange",
+    price: 200,
+    level: "nybörjare",
+  },
+  {
+    title: "baseball",
+    category: "baseball",
+    productId: 12561289,
+    extraEquipment: "handske",
+    material: "läder",
+    color: "vit",
+    price: 145,
+    level: "professionell",
+  },
+  {
+    title: "fotboll",
+    category: "fotboll",
+    productId: 12561255,
+    extraEquipment: "luftpump",
+    material: "läder",
+    color: "flera",
+    price: 89,
+    level: "nybörjare",
+  },
+  {
+    title: "golfboll",
+    category: "golf",
+    productId: 12561999,
+    extraEquipment: "peg",
+    material: "plast/gummi",
+    color: "vit",
+    price: 59,
+    level: "blandat",
+  },
+  {
+    title: "handboll",
+    category: "handboll",
+    productId: 12561211,
+    extraEquipment: "luftpump",
+    material: "läder",
+    color: "orange",
+    price: 249,
+    level: "nybörjare",
+  },
+  {
+    title: "tennisboll",
+    category: "tennis",
+    productId: 12561495,
+    extraEquipment: "tennisracket",
+    material: "gummi",
+    color: "gul",
+    price: 99,
+    level: "professionell",
+  },
+];
+
+bollar.forEach((boll) => (boll.img = `/assets/img/${boll.title}.jpg`));
+
+localStorage.setItem("bollar", JSON.stringify(bollar));

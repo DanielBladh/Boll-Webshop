@@ -1,0 +1,70 @@
+{
+  "articles": [
+    {
+      "title": "basketboll",
+      "category": "basket",
+      "productId": 12561256,
+      "extraEquipment": "luftpump",
+      "material": "gummi",
+      "color": "orange",
+      "price": 200,
+      "level": "nybörjare",
+      "img": "/assets/img/basketboll.jpg"
+    },
+    {
+      "title": "baseball",
+      "category": "baseball",
+      "productId": 12561289,
+      "extraEquipment": "handske",
+      "material": "läder",
+      "color": "vit",
+      "price": 145,
+      "level": "professionell",
+      "img": "/assets/img/baseball.jpg"
+    },
+    {
+      "title": "fotboll",
+      "category": "fotboll",
+      "productId": 12561255,
+      "extraEquipment": "luftpump",
+      "material": "läder",
+      "color": "flera",
+      "price": 89,
+      "level": "nybörjare",
+      "img": "/assets/img/fotboll.jpg"
+    },
+    {
+      "title": "golfboll",
+      "category": "golf",
+      "productId": 12561999,
+      "extraEquipment": "peg",
+      "material": "plast/gummi",
+      "color": "vit",
+      "price": 59,
+      "level": "blandat",
+      "img": "/assets/img/golfboll.jpg"
+    },
+    {
+      "title": "handboll",
+      "category": "bhandboll",
+      "productId": 12561211,
+      "extraEquipment": "luftpump",
+      "material": "läder",
+      "color": "orange",
+      "price": 249,
+      "level": "nybörjare",
+      "img": "/assets/img/handboll.jpg"
+    },
+    {
+      "title": "tennisboll",
+      "category": "tennis",
+      "productId": 12561495,
+      "extraEquipment": "tennisracket",
+      "material": "gummi",
+      "color": "gul",
+      "price": 99,
+      "level": "professionell",
+      "img": "/assets/img/tennisboll.jpg"
+    }
+  ]
+}
