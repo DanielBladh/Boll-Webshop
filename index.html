@@ -1,114 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
 
-    <link rel="stylesheet" href="style.css" />
-    <title>Javascript 2 Gruppuppgift</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid page-container">
-        <a class="navbar-brand" href="#"
-          ><img src="/assets/loggapng.png" alt="logo"
-        /></a>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse nav-links"
-          id="navbarSupportedContent"
-        >
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item">
-              <p class="all-articles">Alla bollar</p>
-            </li>
-            <li class="nav-item"><i class="bi bi-bag-fill"></i></li>
-          </ul>
-        </div>
+  <link rel="stylesheet" href="style.css" />
+  <title>Javascript 2 Gruppuppgift</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid page-container">
+      <a class="navbar-brand" href="#"><img src="/assets/loggapng.png" alt="logo" /></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse nav-links" id="navbarSupportedContent">
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">
+            Search
+          </button>
+        </form>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <p class="all-articles">Alla bollar</p>
+          </li>
+          <li class="nav-item"><i class="bi bi-bag-fill"></i></li>
+        </ul>
       </div>
-    </nav>
-    <div id="root">
-      <div class="welcome">
-        <h1>Vad behöver du för boll idag?</h1>
-        <p>
-          Vi på BOLL kan bollar! Oavsett om du vill kicka boll, slå ner käglor
-          eller slå boll med racket har vi det du behöver. Välkommen till vår
-          webshop och ett oändligt utbud av bollar i alla tänkbara former!
-        </p>
-        <div class="ball-icons">
-          <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
-          <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
+    </div>
+  </nav>
+  <div id="root">
+    <div class="welcome">
+      <h1>Vad behöver du för boll idag?</h1>
+      <p>
+        Vi på BOLL kan bollar! Oavsett om du vill kicka boll, slå ner käglor
+        eller slå boll med racket har vi det du behöver. Välkommen till vår
+        webshop och ett oändligt utbud av bollar i alla tänkbara former!
+      </p>
+      <div class="ball-icons">
+        <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
+        <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      </div>
+    </div>
+    <!-- LINA LINA LINA -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-product-id="12561256" data-bs-toggle="modal"
+      data-bs-target="#exampleModal">
+      Basketboll
+    </button>
+    <button type="button" class="btn btn-primary" data-product-id="12561289" data-bs-toggle="modal"
+      data-bs-target="#exampleModal">
+      Baseball
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Här nedanför kommer Titeln  -->
+            <h1 class="modal-title" id="title"></h1>
+            <!-- Här lägger jag in mina krejjer -->
+            <p id="price"></p>
+            <p id="extraEquipment"></p>
+            <p id="material"></p>
+            <p id="color"></p>
+            <p id="level"></p>
+            <br>
+            <img src="assets/img/basketboll.jpg" class="responsive" alt="" srcset="">
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Close</button> -->
+            <button type="button" class="btn btn-success btn-lg">KÖP</button>
+          </div>
         </div>
       </div>
     </div>
-    <footer>
-      <div class="contact">
-        <div class="email">
-          <i class="bi bi-envelope"></i>
-          <p>info@boll.se</p>
-        </div>
-        <div class="adress">
-          <img src="/assets/loggapng.png" alt="logo" />
-          <p>Gatvägen 11</p>
-          <p>111 11 Stadsbyn</p>
-        </div>
-        <div class="phone">
-          <i class="bi bi-phone"></i>
-          <p>0707070707</p>
-        </div>
-      </div>
-      <div class="soc-med">
-        <a href="https://www.instagram.com/" target="_blank">
-          <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://www.facebook.com/" target="_blank">
-          <i class="bi bi-facebook"></i>
-        </a>
-        <a href="https://www.twitter.com/" target="_blank">
-          <i class="bi bi-twitter"></i>
-        </a>
-      </div>
-    </footer>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
-    <script src="db.js"></script>
-    <script src="main.js"></script>
-  </body>
+  </div>
+  <footer>
+    <div class="contact">
+      <div class="email">
+        <i class="bi bi-envelope"></i>
+        <p>info@boll.se</p>
+      </div>
+      <div class="adress">
+        <img src="/assets/loggapng.png" alt="logo" />
+        <p>Gatvägen 11</p>
+        <p>111 11 Stadsbyn</p>
+      </div>
+      <div class="phone">
+        <i class="bi bi-phone"></i>
+        <p>0707070707</p>
+      </div>
+    </div>
+    <div class="soc-med">
+      <a href="https://www.instagram.com/" target="_blank">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://www.facebook.com/" target="_blank">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a href="https://www.twitter.com/" target="_blank">
+        <i class="bi bi-twitter"></i>
+      </a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="db.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>
