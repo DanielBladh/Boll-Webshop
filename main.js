@@ -24,3 +24,4 @@ exampleModal.addEventListener('show.bs.modal', function (event) {
 function setProductData(value, product) {
     document.getElementById(value).innerHTML = product[value]
 }
+// LINA //
