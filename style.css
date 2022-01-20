@@ -134,3 +134,97 @@ footer .soc-med {
   max-width: 100%;
   height: auto;
 }
+
+/* Basket / Varukorg / Shopping cart  */
+
+.box {
+  flex-direction: column;
+  background-color: #fffefe;
+  font-weight: bold;
+  width: 60rem;
+  height: 35rem;
+  padding: 6rem;
+  text-align: center;
+  margin: 3rem auto;
+}
+
+#checkoutBtn {
+  font-weight: bold;
+  position: relative;
+  top: 150px;
+  left: 380px;
+
+  color: black;
+}
+
+.bi.bi-x-lg {
+  position: relative;
+  bottom: 90px;
+  left: 460px;
+}
+
+.totalPrice {
+  position: relative;
+  top: 120px;
+  left: 350px;
+}
+
+.boxItemsLight {
+  background-color: #fffefe;
+  width: 50rem;
+  height: 3rem;
+  margin-top: 1fr;
+}
+
+.contentBox {
+  padding: 11px;
+  grid-column: 1;
+  display: flex;
+  width: auto;
+  height: 3rem;
+  grid-auto-rows: 100px;
+}
+
+.counter {
+  margin-left: 15px;
+}
+
+#counter-label {
+  margin-left: 3rem;
+}
+
+.bi.bi-trash-fill {
+  margin-left: 30rem;
+  padding-right: 10px;
+}
+
+.boxItemsDark {
+  background-color: var(--light-grey);
+  width: 50rem;
+  height: 3rem;
+  margin-top: 1fr;
+}
+
+.boxItemsLight:hover {
+  border: 1px solid var(--mid-grey);
+}
+
+.boxItemsDark:hover {
+  border: 1px solid var(--mid-grey);
+}
+
+.boxItemsLight > img {
+  width: 3%;
+  align-items: left;
+  margin-top: 1fr;
+  float: left;
+}
+
+.boxItemsDark > img {
+  width: 3%;
+  align-items: center;
+  margin-top: 1fr;
+  float: left;
+}
+
+/* Basket / Varukorg / Shopping cart  */
