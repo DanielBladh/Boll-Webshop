@@ -177,6 +177,7 @@ footer .soc-med {
 }
 
 .contentBox {
+  cursor: pointer;
   padding: 11px;
   grid-column: 1;
   display: flex;
@@ -228,3 +229,40 @@ footer .soc-med {
 }
 
 /* Basket / Varukorg / Shopping cart  */
+
+/* Alla produkter */
+
+.myCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+
+  max-width: 1200px;
+  margin: 0 auto 5rem auto;
+}
+
+.card {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  cursor: pointer;
+  margin: auto;
+}
+
+.card p {
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+}
+
+.img-container {
+  padding: 5%;
+  height: 12rem;
+  width: 12rem;
+  margin: auto;
+}
+
+.img-card-top {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+}
+
+/* Alla produkter */
