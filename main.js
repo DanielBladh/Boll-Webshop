@@ -4,7 +4,6 @@ const rootElement = document.querySelector("#root");
 // LINA //
 function showModal() {
   let exampleModal = document.getElementById("exampleModal");
-  console.log("modal");
   exampleModal.addEventListener("show.bs.modal", function (event) {
   let product = event.relatedTarget;
   let productid = product.getAttribute("data-product-id"); //rad 56
@@ -12,7 +11,6 @@ function showModal() {
 
   products.forEach((product) => {
     if (product.productId == productid) {
-      console.log(product.title);
       setProductData("title", product);
       setProductData("price", product);
       setProductData("extraEquipment", product);
@@ -178,9 +176,8 @@ const printArticles = () => {
   });
   document.getElementById("root").appendChild(cardContainer);
 
-  Array.from(document.querySelectorAll(".btn-warning")).forEach((btn) =>{
+  Array.from(document.querySelectorAll(".btn-warning")).forEach((btn) =>
     btn.addEventListener("click", showModal)
-  console.log('eventlisteners');}
   );
 };
 
