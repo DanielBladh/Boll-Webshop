@@ -2,10 +2,10 @@ const articles = JSON.parse(localStorage.bollar);
 const rootElement = document.querySelector("#root");
 
 // LINA //
-let exampleModal = document.getElementById("exampleModal");
-/* function showModal() {
-  console.log("modal"); */
-exampleModal.addEventListener("show.bs.modal", function (event) {
+function showModal() {
+  let exampleModal = document.getElementById("exampleModal");
+  console.log("modal");
+  exampleModal.addEventListener("show.bs.modal", function (event) {
   let product = event.relatedTarget;
   let productid = product.getAttribute("data-product-id"); //rad 56
   const products = JSON.parse(localStorage.getItem("bollar")); // från T´s lista
@@ -21,11 +21,11 @@ exampleModal.addEventListener("show.bs.modal", function (event) {
       setProductData("level", product);
     }
   });
-});
-function setProductData(value, product) {
-  document.getElementById(value).innerHTML = product[value];
+  });
+  function setProductData(value, product) {
+    document.getElementById(value).innerHTML = product[value];
+  }
 }
-/* } */
 
 // LINA //
 
@@ -34,7 +34,14 @@ function setProductData(value, product) {
 /* Soptunna + "Till kassan" + Kryssa rutan */
 
 document.getElementById("bag").addEventListener("click", function () {
-  rootElement.innerHTML = "";
+  const welcomeDiv = document.querySelector('.welcome');
+  const cardDiv = document.querySelector('.myCards');
+
+  if(welcomeDiv && cardDiv) {
+    welcomeDiv.parentNode.removeChild(welcomeDiv);
+    cardDiv.parentNode.removeChild(cardDiv);
+  }
+  
   const cartContainer = document.createElement("div");
   cartContainer.className = "basket";
   cartContainer.innerHTML = `
@@ -171,15 +178,24 @@ const printArticles = () => {
   });
   document.getElementById("root").appendChild(cardContainer);
 
-  /* Array.from(document.querySelectorAll(".btn-warning")).forEach((btn) =>
+  Array.from(document.querySelectorAll(".btn-warning")).forEach((btn) =>{
     btn.addEventListener("click", showModal)
-  ); */
+  console.log('eventlisteners');}
+  );
 };
 
 const printWelcome = () => {
-  rootElement.innerHTML = "";
-  const welcome = `<div class="welcome">
-    <h1>Vad behöver du för boll idag?</h1>
+  /* Den här tömmer root, tar  bort även modal-html */
+  /* rootElement.innerHTML = ''; */
+
+  /* Vi gör såhär ist: kollar om basket finns i root, om ja, tar bort den */
+  const basket = rootElement.querySelector('.basket');
+  basket && basket.parentNode.removeChild(basket);
+
+  const ele = document.createElement("div");
+  ele.className = 'welcome';
+  
+  const welcome = `<h1>Vad behöver du för boll idag?</h1>
     <p>
       Vi på BOLL kan bollar! Oavsett om du vill kicka boll, slå ner käglor
       eller slå boll med racket har vi det du behöver. Välkommen till vår
@@ -188,12 +204,13 @@ const printWelcome = () => {
     <div class="ball-icons">
       <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
       <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
-    </div>
-  </div>`;
-  const ele = document.createElement("div");
-  ele.innerHTML = welcome;
+    </div>`;
+    ele.innerHTML = welcome;
   document.getElementById("root").appendChild(ele);
 };
+
+document.querySelector('.all-articles').addEventListener('click', init);
+document.querySelector('.logo').addEventListener('click', init);
 
 function init() {
   printWelcome();
