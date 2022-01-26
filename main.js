@@ -5,20 +5,20 @@ const rootElement = document.querySelector("#root");
 function showModal() {
   let exampleModal = document.getElementById("exampleModal");
   exampleModal.addEventListener("show.bs.modal", function (event) {
-  let product = event.relatedTarget;
-  let productid = product.getAttribute("data-product-id"); //rad 56
-  const products = JSON.parse(localStorage.getItem("bollar")); // från T´s lista
+    let product = event.relatedTarget;
+    let productid = product.getAttribute("data-product-id"); //rad 56
+    const products = JSON.parse(localStorage.getItem("bollar")); // från T´s lista
 
-  products.forEach((product) => {
-    if (product.productId == productid) {
-      setProductData("title", product);
-      setProductData("price", product);
-      setProductData("extraEquipment", product);
-      setProductData("material", product);
-      setProductData("color", product);
-      setProductData("level", product);
-    }
-  });
+    products.forEach((product) => {
+      if (product.productId == productid) {
+        setProductData("title", product);
+        setProductData("price", product);
+        setProductData("extraEquipment", product);
+        setProductData("material", product);
+        setProductData("color", product);
+        setProductData("level", product);
+      }
+    });
   });
   function setProductData(value, product) {
     document.getElementById(value).innerHTML = product[value];
@@ -32,14 +32,14 @@ function showModal() {
 /* Soptunna + "Till kassan" + Kryssa rutan */
 
 document.getElementById("bag").addEventListener("click", function () {
-  const welcomeDiv = document.querySelector('.welcome');
-  const cardDiv = document.querySelector('.myCards');
+  const welcomeDiv = document.querySelector(".welcome");
+  const cardDiv = document.querySelector(".myCards");
 
-  if(welcomeDiv && cardDiv) {
+  if (welcomeDiv && cardDiv) {
     welcomeDiv.parentNode.removeChild(welcomeDiv);
     cardDiv.parentNode.removeChild(cardDiv);
   }
-  
+
   const cartContainer = document.createElement("div");
   cartContainer.className = "basket";
   cartContainer.innerHTML = `
@@ -186,12 +186,12 @@ const printWelcome = () => {
   /* rootElement.innerHTML = ''; */
 
   /* Vi gör såhär ist: kollar om basket finns i root, om ja, tar bort den */
-  const basket = rootElement.querySelector('.basket');
+  const basket = rootElement.querySelector(".basket");
   basket && basket.parentNode.removeChild(basket);
 
   const ele = document.createElement("div");
-  ele.className = 'welcome';
-  
+  ele.className = "welcome";
+
   const welcome = `<h1>Vad behöver du för boll idag?</h1>
     <p>
       Vi på BOLL kan bollar! Oavsett om du vill kicka boll, slå ner käglor
@@ -199,15 +199,15 @@ const printWelcome = () => {
       webshop och ett oändligt utbud av bollar i alla tänkbara former!
     </p>
     <div class="ball-icons">
-      <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
-      <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      <img class="first-icons" src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      <img class="second-icons" src="assets/img/bollariconer.jpg" alt="balls on a row" />
     </div>`;
-    ele.innerHTML = welcome;
+  ele.innerHTML = welcome;
   document.getElementById("root").appendChild(ele);
 };
 
-document.querySelector('.all-articles').addEventListener('click', init);
-document.querySelector('.logo').addEventListener('click', init);
+document.querySelector(".all-articles").addEventListener("click", init);
+document.querySelector(".logo").addEventListener("click", init);
 
 function init() {
   printWelcome();

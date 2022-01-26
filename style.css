@@ -53,6 +53,11 @@ nav img {
 .nav-item {
   padding: 0.5rem;
   cursor: pointer;
+  transition: all 0.05s ease-in-out;
+}
+
+.nav-item:hover {
+  transform: scale(1.05);
 }
 
 .bi.bi-bag-fill {
@@ -64,7 +69,7 @@ footer {
 }
 footer img {
   width: 5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 footer a {
@@ -77,8 +82,9 @@ footer a:hover {
 }
 footer .contact {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  width: 30rem;
+  width: 15rem;
   margin: auto;
   margin-bottom: 1.5rem;
 }
@@ -92,10 +98,13 @@ footer .phone {
   display: flex;
   align-items: center;
   height: 35%;
+  margin-bottom: 0.3rem;
 }
 
 footer .adress {
+  margin-top: 2rem;
   text-align: center;
+  width: 15rem;
 }
 
 footer .soc-med {
@@ -112,7 +121,7 @@ footer .soc-med {
 .welcome {
   background-color: #fffefe;
   width: 60rem;
-  height: 20rem;
+  min-height: 20rem;
   padding: 2rem;
   text-align: center;
   margin: 3rem auto;
@@ -136,23 +145,26 @@ footer .soc-med {
 }
 
 /* Basket / Varukorg / Shopping cart  */
-
+.basket {
+  max-width: 100%;
+}
 .box {
   flex-direction: column;
   background-color: #fffefe;
   font-weight: bold;
-  width: 60rem;
+  max-width: 60rem;
   height: 35rem;
   padding: 6rem;
   text-align: center;
   margin: 3rem auto;
+  position: relative;
 }
 
 #checkoutBtn {
   font-weight: bold;
-  position: relative;
-  top: 150px;
-  left: 380px;
+  position: absolute;
+  bottom: 5rem;
+  right: 7rem;
 
   color: black;
 }
@@ -164,14 +176,15 @@ footer .soc-med {
 }
 
 .totalPrice {
-  position: relative;
-  top: 120px;
-  left: 350px;
+  position: absolute;
+  bottom: 11rem;
+  right: 6rem;
+  width: 10rem;
 }
 
 .boxItemsLight {
   background-color: #fffefe;
-  width: 50rem;
+  width: 100%;
   height: 3rem;
   margin-top: 1fr;
 }
@@ -190,18 +203,22 @@ footer .soc-med {
   margin-left: 15px;
 }
 
+#price {
+  width: 5rem;
+}
+
 #counter-label {
   margin-left: 3rem;
 }
 
 .bi.bi-trash-fill {
-  margin-left: 30rem;
+  margin-left: 28rem;
   padding-right: 10px;
 }
 
 .boxItemsDark {
   background-color: var(--light-grey);
-  width: 50rem;
+  width: 100%;
   height: 3rem;
   margin-top: 1fr;
 }
@@ -266,3 +283,38 @@ footer .soc-med {
 }
 
 /* Alla produkter */
+
+@media screen and (max-width: 990px) {
+  .welcome {
+    width: 90%;
+  }
+
+  .first-icons {
+    display: none;
+  }
+
+  .myCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .d-flex {
+    margin-top: 0.5rem;
+  }
+  .nav-item {
+    margin: 0.5rem 0;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .second-icons {
+    display: none;
+  }
+  .myCards {
+    grid-template-columns: 1fr;
+  }
+
+  footer .contact {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+}
