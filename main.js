@@ -14,11 +14,20 @@ document.getElementById("buyBtn").addEventListener("click", function () {
 function showModal() {
   let exampleModal = document.getElementById("exampleModal");
   exampleModal.addEventListener("show.bs.modal", function (event) {
+<<<<<<< HEAD
     let selectedProductId = event.relatedTarget.getAttribute("data-product-id"); //rad 55
     const products = JSON.parse(localStorage.getItem("bollar")); // från Toves lista
 
     products.forEach((product) => {
       if (product.productId == selectedProductId) {
+=======
+    let product = event.relatedTarget;
+    let productid = product.getAttribute("data-product-id"); //rad 56
+    const products = JSON.parse(localStorage.getItem("bollar")); // från T´s lista
+
+    products.forEach((product) => {
+      if (product.productId == productid) {
+>>>>>>> 58c3ee941e539e483ed8bd831ce0d9691a0e094e
         setProductData("title", product);
         setProductData("price", product);
         setProductData("extraEquipment", product);
@@ -46,8 +55,8 @@ function showModal() {
 /* Soptunna + "Till kassan" + Kryssa rutan */
 
 document.getElementById("bag").addEventListener("click", function () {
-  const welcomeDiv = document.querySelector('.welcome');
-  const cardDiv = document.querySelector('.myCards');
+  const welcomeDiv = document.querySelector(".welcome");
+  const cardDiv = document.querySelector(".myCards");
 
   if (welcomeDiv && cardDiv) {
     welcomeDiv.parentNode.removeChild(welcomeDiv);
@@ -200,7 +209,7 @@ const printWelcome = () => {
   /* rootElement.innerHTML = ''; */
 
   /* Vi gör såhär ist: kollar om basket finns i root, om ja, tar bort den */
-  const basket = rootElement.querySelector('.basket');
+  const basket = rootElement.querySelector(".basket");
   basket && basket.parentNode.removeChild(basket);
 
   const ele = document.createElement("div");
@@ -213,15 +222,15 @@ const printWelcome = () => {
       webshop och ett oändligt utbud av bollar i alla tänkbara former!
     </p>
     <div class="ball-icons">
-      <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
-      <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      <img class="first-icons" src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      <img class="second-icons" src="assets/img/bollariconer.jpg" alt="balls on a row" />
     </div>`;
   ele.innerHTML = welcome;
   document.getElementById("root").appendChild(ele);
 };
 
-document.querySelector('.all-articles').addEventListener('click', init);
-document.querySelector('.logo').addEventListener('click', init);
+document.querySelector(".all-articles").addEventListener("click", init);
+document.querySelector(".logo").addEventListener("click", init);
 
 function init() {
   printWelcome();
