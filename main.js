@@ -14,20 +14,14 @@ document.getElementById("buyBtn").addEventListener("click", function () {
 function showModal() {
   let exampleModal = document.getElementById("exampleModal");
   exampleModal.addEventListener("show.bs.modal", function (event) {
-<<<<<<< HEAD
+
     let selectedProductId = event.relatedTarget.getAttribute("data-product-id"); //rad 55
     const products = JSON.parse(localStorage.getItem("bollar")); // från Toves lista
 
     products.forEach((product) => {
       if (product.productId == selectedProductId) {
-=======
-    let product = event.relatedTarget;
-    let productid = product.getAttribute("data-product-id"); //rad 56
-    const products = JSON.parse(localStorage.getItem("bollar")); // från T´s lista
 
-    products.forEach((product) => {
-      if (product.productId == productid) {
->>>>>>> 58c3ee941e539e483ed8bd831ce0d9691a0e094e
+
         setProductData("title", product);
         setProductData("price", product);
         setProductData("extraEquipment", product);
