@@ -2,28 +2,42 @@ const articles = JSON.parse(localStorage.bollar);
 const rootElement = document.querySelector("#root");
 
 // LINA //
+
+// Köp Knappen med click funktion 
+document.getElementById("buyBtn").addEventListener("click", function () {
+  console.log("KÖPT!");
+})
+
+// Modalen
+
+
 function showModal() {
   let exampleModal = document.getElementById("exampleModal");
   exampleModal.addEventListener("show.bs.modal", function (event) {
-  let product = event.relatedTarget;
-  let productid = product.getAttribute("data-product-id"); //rad 56
-  const products = JSON.parse(localStorage.getItem("bollar")); // från T´s lista
+    let selectedProductId = event.relatedTarget.getAttribute("data-product-id"); //rad 55
+    const products = JSON.parse(localStorage.getItem("bollar")); // från Toves lista
 
-  products.forEach((product) => {
-    if (product.productId == productid) {
-      setProductData("title", product);
-      setProductData("price", product);
-      setProductData("extraEquipment", product);
-      setProductData("material", product);
-      setProductData("color", product);
-      setProductData("level", product);
-    }
-  });
+    products.forEach((product) => {
+      if (product.productId == selectedProductId) {
+        setProductData("title", product);
+        setProductData("price", product);
+        setProductData("extraEquipment", product);
+        setProductData("material", product);
+        setProductData("color", product);
+        setProductData("level", product);
+        setProductData("category", product);
+        setProductImg("img", product);
+      }
+    });
   });
   function setProductData(value, product) {
     document.getElementById(value).innerHTML = product[value];
   }
+  function setProductImg(value, product) {
+    document.getElementById(value).src = product[value];
+  }
 }
+
 
 // LINA //
 
@@ -35,11 +49,11 @@ document.getElementById("bag").addEventListener("click", function () {
   const welcomeDiv = document.querySelector('.welcome');
   const cardDiv = document.querySelector('.myCards');
 
-  if(welcomeDiv && cardDiv) {
+  if (welcomeDiv && cardDiv) {
     welcomeDiv.parentNode.removeChild(welcomeDiv);
     cardDiv.parentNode.removeChild(cardDiv);
   }
-  
+
   const cartContainer = document.createElement("div");
   cartContainer.className = "basket";
   cartContainer.innerHTML = `
@@ -154,14 +168,14 @@ const printArticles = () => {
 
   articles.forEach((article) => {
     const card = `<div class="card text-center" style="width: 16rem; margin-top: 5%;">
-        <div class="img-container">
-        <img class="card-img-top" src="${article.img}" alt="Card image cap">
+    <div class="img-container">
+    <img class="card-img-top" src="${article.img}" alt="Card image cap">
         </div>
         <div class="card-body">
           <h4 class="card-title">${article.title}</h4>
           <p class="card-text">${article.color}</p>
           <p class="card-text">${article.price}<span>:-</span></p>
-          
+  
           <button type="button" class="btn btn-warning" data-product-id="${article.productId}" data-bs-toggle="modal"
         data-bs-target="#exampleModal">
       Läs mer
@@ -191,7 +205,7 @@ const printWelcome = () => {
 
   const ele = document.createElement("div");
   ele.className = 'welcome';
-  
+
   const welcome = `<h1>Vad behöver du för boll idag?</h1>
     <p>
       Vi på BOLL kan bollar! Oavsett om du vill kicka boll, slå ner käglor
@@ -202,7 +216,7 @@ const printWelcome = () => {
       <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
       <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
     </div>`;
-    ele.innerHTML = welcome;
+  ele.innerHTML = welcome;
   document.getElementById("root").appendChild(ele);
 };
 

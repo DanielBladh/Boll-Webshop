@@ -9,7 +9,7 @@
       "color": "orange",
       "price": 200,
       "level": "nybörjare",
-      "img": "/assets/img/basketboll.jpg"
+      "img": "assets/img/basketboll.jpg"
     },
     {
       "title": "baseball",
@@ -20,7 +20,7 @@
       "color": "vit",
       "price": 145,
       "level": "professionell",
-      "img": "/assets/img/baseball.jpg"
+      "img": "assets/img/baseball.jpg"
     },
     {
       "title": "fotboll",
@@ -31,7 +31,7 @@
       "color": "flera",
       "price": 89,
       "level": "nybörjare",
-      "img": "/assets/img/fotboll.jpg"
+      "img": "assets/img/fotboll.jpg"
     },
     {
       "title": "golfboll",
@@ -42,7 +42,7 @@
       "color": "vit",
       "price": 59,
       "level": "blandat",
-      "img": "/assets/img/golfboll.jpg"
+      "img": "assets/img/golfboll.jpg"
     },
     {
       "title": "handboll",
@@ -53,7 +53,7 @@
       "color": "orange",
       "price": 249,
       "level": "nybörjare",
-      "img": "/assets/img/handboll.jpg"
+      "img": "assets/img/handboll.jpg"
     },
     {
       "title": "tennisboll",
@@ -64,7 +64,7 @@
       "color": "gul",
       "price": 99,
       "level": "professionell",
-      "img": "/assets/img/tennisboll.jpg"
+      "img": "assets/img/tennisboll.jpg"
     }
   ]
 }
