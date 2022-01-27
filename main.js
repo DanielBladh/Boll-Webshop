@@ -165,31 +165,35 @@ document.getElementById("bag").addEventListener("click", function () {
 
 // DANIEL //
 
+
+
+
+
+
 const printArticles = () => {
   const cardContainer = document.createElement("div");
   cardContainer.className = "myCards";
 
   articles.forEach((article) => {
     const card = `<div class="card text-center" style="width: 16rem; margin-top: 5%;">
-    <div class="img-container">
-    <img class="card-img-top" src="${article.img}" alt="Card image cap">
+        <div class="img-container">
+        <img class="card-img-top" src="${article.img}" alt="Card image cap">
         </div>
         <div class="card-body">
           <h4 class="card-title">${article.title}</h4>
           <p class="card-text">${article.color}</p>
           <p class="card-text">${article.price}<span>:-</span></p>
-  
+          
           <button type="button" class="btn btn-warning" data-product-id="${article.productId}" data-bs-toggle="modal"
-        data-bs-target="#exampleModal">
-      Läs mer
-    </button>
+            data-bs-target="#exampleModal">
+            Läs mer
+          </button>
           
         </div>
         </div>`;
     const ele = document.createElement("div");
     ele.innerHTML = card;
     cardContainer.appendChild(ele);
-    // document.getElementById("root").appendChild(ele);
   });
   document.getElementById("root").appendChild(cardContainer);
 
@@ -203,12 +207,12 @@ const printWelcome = () => {
   /* rootElement.innerHTML = ''; */
 
   /* Vi gör såhär ist: kollar om basket finns i root, om ja, tar bort den */
-  const basket = rootElement.querySelector(".basket");
+  const basket = rootElement.querySelector('.basket');
   basket && basket.parentNode.removeChild(basket);
 
   const ele = document.createElement("div");
   ele.className = 'welcome';
-
+  
   const welcome = `<h1>Vad behöver du för boll idag?</h1>
     <p>
       Vi på BOLL kan bollar! Oavsett om du vill kicka boll, slå ner käglor
@@ -216,10 +220,10 @@ const printWelcome = () => {
       webshop och ett oändligt utbud av bollar i alla tänkbara former!
     </p>
     <div class="ball-icons">
-      <img class="first-icons" src="assets/img/bollariconer.jpg" alt="balls on a row" />
-      <img class="second-icons" src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
     </div>`;
-  ele.innerHTML = welcome;
+    ele.innerHTML = welcome;
   document.getElementById("root").appendChild(ele);
 };
 
@@ -233,3 +237,54 @@ function init() {
 
 init();
 // DANIEL //
+
+
+const searchBar = document.getElementById("search");
+
+search.addEventListener('keyup', (e) => {
+
+  document.getElementById("root").innerHTML = "";
+  const searchString = e.target.value.toLowerCase();
+
+  if (searchString === "") {
+    init();
+  }
+  else {
+    const filteredArticles = articles.filter((article)  => {
+      return ( 
+        article.title.toLowerCase().includes(searchString) || article.color.toLowerCase().includes(searchString) || article.material.toLowerCase().includes(searchString)
+      )
+  });
+  displayResult(filteredArticles);
+  }
+
+});
+
+const displayResult = (articles) => {
+  const cardContainer = document.createElement("div");
+  cardContainer.className = "myCards";
+
+  articles.forEach((article) => {
+    const card = `<div class="card text-center" style="width: 16rem; margin-top: 5%;">
+        <div class="img-container">
+        <img class="card-img-top" src="${article.img}" alt="Card image cap">
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">${article.title}</h4>
+          <p class="card-text">${article.color}</p>
+          <p class="card-text">${article.price}<span>:-</span></p>
+          
+          <button type="button" class="btn btn-warning" data-product-id="${article.productId}" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">
+      Läs mer
+    </button>
+          
+        </div>
+        </div>`;
+    const ele = document.createElement("div");
+    ele.innerHTML = card;
+    cardContainer.appendChild(ele);
+    // document.getElementById("root").appendChild(ele);
+  });
+  document.getElementById("root").appendChild(cardContainer);
+}
