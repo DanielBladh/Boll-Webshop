@@ -6,11 +6,11 @@ const rootElement = document.querySelector("#root");
 // Modalen
 function showModal() {
   const products = JSON.parse(localStorage.getItem("bollar")); // från Toves lista
+  let selectedProductId = null;
   let exampleModal = document.getElementById("exampleModal");
   exampleModal.addEventListener("show.bs.modal", function (event) {
-    let selectedProductId = event.relatedTarget.getAttribute("data-product-id"); //rad 55
+    selectedProductId = event.relatedTarget.getAttribute("data-product-id"); //rad 55
     document.getElementById("buyBtn").dataset.id = selectedProductId;
-    console.log(selectedProductId);
 
     products.forEach((product) => {
       if (product.productId == selectedProductId) {
@@ -25,30 +25,80 @@ function showModal() {
       }
     });
   });
+
   function setProductData(value, product) {
     document.getElementById(value).innerHTML = product[value];
   }
+
   function setProductImg(value, product) {
     document.getElementById(value).src = product[value];
   }
   // Köp Knappen med click funktion
-  document
-    .getElementById("buyBtn")
-    .addEventListener("click", (e) => addToCart(e.target.dataset.id));
+  const btn = document.getElementById("buyBtn");
+
+  btn.addEventListener("click", (e) => addToCart(e.target.dataset.id));
+  const product = articles.find(
+    (article) => article.productId === Number(selectedProductId)
+  );
+
+  if (!cartArray.includes(product)) {
+    btn.textContent = "Lägg till i varukorg";
+  } else {
+    btn.textContent = "Tillagd i varukorgen";
+  }
 }
 // LINA //
 
 // ----------------Frank--------------------//
 
-/* Lägg till antal bollar knappen! */
-
-//Denna array fylls med produkterna som ska in i varukorgen
+//cartArray fylls med produkterna som ska in i varukorgen
 var cartArray = [];
 var cartItemsElement = "";
 var i = cartArray.length;
+var counterElement = "";
+
+/* function createCounter() {
+  const counterArray = [cartArray.length];
+  const counterArray = [1, 2, 3];
+  console.log(counterArray);
+  for (let i = 0; i < counterArray.length; i++) {
+    var plus = `document.getElementById("plusClick${i}")`;
+    var minus = `document.getElementById("minusClick${i}")`;
+    var counterVal = `document.getElementById("counterVal${i}")`;
+
+    console.log(plus);
+    console.log(minus);
+    console.log(counterVal);
+
+    function updateDisplay(val) {
+      document.getElementById("counter-label").innerHTML = val;
+    }
+
+    document.getElementById(plus).addEventListener("click", function () {
+      updateDisplay(++counterVal);
+    });
+
+    document.getElementById(minusClick).addEventListener("click", function () {
+      if (counterVal > 0) {
+        updateDisplay(--counterVal);
+      }
+    });
+  }
+
+  counterArray.forEach(
+    (element) =>
+      (counterElement += `
+    <div id="counter-label${element}">0</div>
+      <div class="counter">
+      <i class="bi bi-plus" id="plusClick${element}"></i>
+      <i class="bi bi-dash" id="minusClick${element}"></i>
+      </div>
+    `)
+  );
+} */
 
 function addToCart(id) {
-  const product = articles.find((article) => article.productId === Number(id));
+  /* const product = articles.find((article) => article.productId === Number(id));
   console.log(product);
   if (!cartArray.includes(product)) {
     console.log("Nu har du lagt till en basketboll i din varukorg!");
@@ -57,114 +107,150 @@ function addToCart(id) {
     //Ser till så att man inte kan lägga till samma artikel 2 ggr.
   } else if (cartArray.includes(product)) {
     console.log("Denna vara finns redan i din varukorg.");
+  } */
+  const btn = document.getElementById("buyBtn");
+  const product = articles.find((article) => article.productId === Number(id));
+
+  if (!cartArray.includes(product)) {
+    btn.textContent = "Lägg till i varukorg";
+    cartArray.push(product);
+    product.quantity = 1;
+  } else if (cartArray.includes(product)) {
+    btn.textContent = "Tillagd i varukorgen";
   }
 }
 
-/* document.getElementById("cartTestBtn").addEventListener("click", function () {
-  if (!cartArray.includes(articles[0])) {
-    console.log("Nu har du lagt till en basketboll i din varukorg!");
-    // "articles[0]" är basketbollen.
-    cartArray.push(articles[0]);
-    //Ser till så att man inte kan lägga till samma artikel 2 ggr.
-  } else if (cartArray.includes(articles[0])) {
-    console.log("Denna vara finns redan i din varukorg.");
-  }
-});
+//Tove
+function deleteFromCart(id) {
+  const index = cartArray.findIndex((item) => item.productId === Number(id));
+  cartArray[index].quantity = 1;
+  cartArray.splice(index, 1);
+  deleteFromUI(id);
+}
 
-document.getElementById("cartTestBtn2").addEventListener("click", function () {
-  if (!cartArray.includes(articles[1])) {
-    console.log("Nu har du lagt till en baseball i din varukorg!");
-    // "articles[1]" är baseball.
-    cartArray.push(articles[1]);
-  } else if (cartArray.includes(articles[1])) {
-    console.log("Denna vara finns redan i din varukorg.");
-  }
-}); */
+function deleteFromUI(id) {
+  document
+    .getElementById(id)
+    .parentNode.removeChild(document.getElementById(id));
+  document.querySelector(".total-sum").innerHTML = `${totalPrice(
+    cartArray
+  )} kr`;
+}
 
 document.getElementById("bag").addEventListener("click", function () {
-  const welcome = rootElement.querySelector(".welcome");
-  const cardDiv = rootElement.querySelector(".myCards");
-  const cart = document.querySelector(".basket");
+  rootElement.innerHTML = "";
 
-  if (welcome && cardDiv) {
-    welcome.parentNode.removeChild(welcome);
-    cardDiv.parentNode.removeChild(cardDiv);
-  }
+  renderCartItems();
 
-  if (!cart) {
-    renderCartItems();
-
-    if (cartArray.length == 0) {
-      alert("Din varukorg är tom");
-      init();
-    } else {
-      openCart();
-    }
+  if (cartArray.length == 0) {
+    alert("Din varukorg är tom");
+    init();
+  } else {
+    openCart();
   }
 });
 
 // Visar varukorgen med produkterna du lagt till
 function renderCartItems() {
+  cartItemsElement = "";
+
   cartArray.forEach(
     (element) =>
       (cartItemsElement += `
-      <div class="boxItemsDark">
-      <div class="contentBox">
-      <img src="${element.img}" alt="${element.title}" />
-      <p>${element.title} </p>
-      <div id="counter-label">0</div>
-      <div class="counter">
-      <i class="bi bi-plus" id="plusClick"></i>
-      <i class="bi bi-dash" id="minusClick"> </i>
+      <div class="contentBox" id="${element.productId}">
+        <div class="left">
+            <div class="cart-img-container">
+            <img src="${element.img}" alt="${element.title}" />
+          </div>
+          <p class="cart-title">${element.title} </p>
+          <div class="counter-items">
+            <div class="counter-label">${element.quantity}</div>
+            <div class="counter">
+              <i class="bi bi-plus plus"></i>
+              <i class="bi bi-dash minus"> </i>
+            </div>
+          </div>
+        </div>
+      <div class="right">
+        <i class="bi bi-trash-fill"></i>
+        <div class="price">${element.price} kr</div>
       </div>
-      <i class="bi bi-trash-fill"></i>
-      <div id="price">${element.price} kr</div>
-      </div>
-      </div>`)
+    </div>`)
   );
 }
 
 //Öppnar varukorgen med produkterna du lagt till
 function openCart() {
+  if (cartArray.length !== 0) {
+    var sum = totalPrice(cartArray);
+  }
   const cartContainer = document.createElement("div");
   cartContainer.className = "basket";
   cartContainer.innerHTML =
     `
-        <div class="box">
-        <i class="bi bi-x-lg" id="closeBox"></i>` +
+  <div class="box">
+    <i class="bi bi-x-lg" id="closeBox"></i>
+    <div class="cart-holder">` +
     cartItemsElement +
-    `<div class="totalPrice">
-            <p>Totalt: 60 kr </p>
-          </div>
+    `</div>
+    <div class="bottom">
+      <div class="totalPrice">
+        <p>Totalt: <span class="total-sum">${totalPrice(cartArray)}</span></p>
+      </div>
 
-          <button type="button" class="btn btn-success" id="checkoutBtn">
-            Till kassan
-          </button>
-        </div>
-      </div>`;
+      <button type="button" class="btn btn-success" id="checkoutBtn">
+        Till kassan
+      </button>
+    </div>
+  </div>`;
   rootElement.appendChild(cartContainer);
 
   //Lägger till en eventListener till alla knappar i varukorgen
-  var counterVal = 0;
   var trash = document.getElementsByClassName("bi bi-trash-fill");
 
-  function updateDisplay(val) {
-    document.getElementById("counter-label").innerHTML = val;
+  function updateDisplay(id, quantity, price) {
+    const product = document.getElementById(id);
+    product.querySelector(".counter-label").innerHTML = quantity;
+    product.querySelector(".price").innerHTML = `${price} kr`;
+    document.querySelector(".total-sum").innerHTML = `${totalPrice(
+      cartArray
+    )} kr`;
   }
 
-  document.getElementById("plusClick").addEventListener("click", function () {
-    updateDisplay(++counterVal);
+  const plusBtns = Array.from(document.querySelectorAll(".plus"));
+
+  plusBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      id = e.target.parentNode.parentNode.parentNode.parentNode.id;
+      const product = cartArray.find(
+        (article) => article.productId === Number(id)
+      );
+      product.quantity++;
+      product.cartSum += product.price;
+
+      updateDisplay(id, product.quantity, product.cartSum);
+    });
   });
 
-  document.getElementById("minusClick").addEventListener("click", function () {
-    if (counterVal > 0) {
-      updateDisplay(--counterVal);
-    }
+  const minusBtns = Array.from(document.querySelectorAll(".minus"));
+
+  minusBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      id = e.target.parentNode.parentNode.parentNode.parentNode.id;
+      const product = cartArray.find(
+        (article) => article.productId === Number(id)
+      );
+      if (product.quantity > 1) {
+        product.quantity--;
+        product.cartSum -= product.price;
+        updateDisplay(id, product.quantity, product.cartSum);
+      }
+    });
   });
 
   for (i = 0; i < trash.length; i++) {
-    trash[i].addEventListener("click", function () {
-      console.log("Denna vara har raderats från din varukorg");
+    trash[i].addEventListener("click", function (e) {
+      deleteFromCart(e.target.parentNode.parentNode.id);
     });
   }
 
@@ -225,20 +311,14 @@ const printWelcome = () => {
       webshop och ett oändligt utbud av bollar i alla tänkbara former!
     </p>
     <div class="ball-icons">
-      <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
-      <img src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      <img class="first-icons" src="assets/img/bollariconer.jpg" alt="balls on a row" />
+      <img class="second-icons" src="assets/img/bollariconer.jpg" alt="balls on a row" />
     </div>`;
   ele.innerHTML = welcome;
   document.getElementById("root").appendChild(ele);
 };
 
-document.querySelector(".all-articles").addEventListener("click", init);
-document.querySelector(".logo").addEventListener("click", init);
-
-function init() {
-  rootElement.innerHTML = "";
-  printWelcome();
-  printArticles();
+function addModalHTML() {
   const modal = document.createElement("div");
   modal.innerHTML = `<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -262,7 +342,7 @@ function init() {
                 <p class="fs-6">Nivå: <span class="fw-bold" id="level"></span></p>
                 <p class="fs-6">Kategori: <span class="fw-bold" id="category"></span></p>
               </div>
-              <p class="mt-5 fs-4 fw-bold text-end">Pris: <span id="price"></span>:-</p>
+              <p class="mt-5 fs-4 fw-bold text-end"> Pris:<span id="price"></span>kr</p>
             </div>
           </div>
         </div>
@@ -275,6 +355,17 @@ function init() {
   document.getElementById("root").appendChild(modal);
 }
 
+document.querySelector(".all-articles").addEventListener("click", init);
+document.querySelector(".logo").addEventListener("click", init);
+
+function init() {
+  rootElement.innerHTML = "";
+  printWelcome();
+  printArticles();
+  addModalHTML();
+  showModal();
+}
+
 init();
 
 // DANIEL //
@@ -282,6 +373,9 @@ const searchBar = document.getElementById("search");
 
 search.addEventListener("keyup", (e) => {
   document.getElementById("root").innerHTML = "";
+
+  addModalHTML();
+  showModal();
   const searchString = e.target.value.toLowerCase();
 
   if (searchString === "") {
@@ -331,6 +425,14 @@ const displayResult = (articles) => {
   });
   document.getElementById("root").appendChild(cardContainer);
 };
+
+function totalPrice(articles) {
+  var sum = 0;
+  articles.forEach((article) => {
+    sum += article.cartSum;
+  });
+  return sum;
+}
 
 showModal();
 

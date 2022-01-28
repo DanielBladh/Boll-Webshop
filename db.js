@@ -61,6 +61,9 @@ const bollar = [
   },
 ];
 
-bollar.forEach((boll) => (boll.img = `assets/img/${boll.title}.jpg`));
+bollar.forEach((boll) => {
+  boll.img = `assets/img/${boll.title}.jpg`;
+  boll.cartSum = boll.price;
+});
 
 localStorage.setItem("bollar", JSON.stringify(bollar));
