@@ -196,7 +196,9 @@ function openCart() {
     `</div>
     <div class="bottom">
       <div class="totalPrice">
-        <p>Totalt: <span class="total-sum">${totalPrice(cartArray)}</span></p>
+        <p>Totalt: <span class="total-sum">${totalPrice(
+          cartArray
+        )} kr</span></p>
       </div>
 
       <button type="button" class="btn btn-success" id="checkoutBtn">
