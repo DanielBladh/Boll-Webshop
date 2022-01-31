@@ -124,6 +124,7 @@ function addToCart(id) {
 function deleteFromCart(id) {
   const index = cartArray.findIndex((item) => item.productId === Number(id));
   cartArray[index].quantity = 1;
+  cartArray[index].cartSum = cartArray[index].price;
   cartArray.splice(index, 1);
   deleteFromUI(id);
 }
