@@ -1,3 +1,5 @@
+//Databas där alla artiklar/bollar hämtas ifrån
+
 const bollar = [
   {
     title: "Basketboll",
